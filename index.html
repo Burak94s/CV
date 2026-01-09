@@ -1,115 +1,250 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Burak Kurt | CV</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #0f2027;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burak Kurt - CV</title>
+    <style>
+        /* Genel Stil */
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            background-color: #525659;
+            margin: 0;
+            padding: 40px 0 20px 0; /* Alt boşluk eklendi */
+            display: flex;
+            flex-direction: column; /* Footer'ı alta itmek için */
+            align-items: center;
+        }
 
-    header {
-      padding: 60px 20px;
-      text-align: center;
-    }
+        .cv-card {
+            width: 850px;
+            background-color: white;
+            display: flex;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            min-height: 1100px;
+        }
 
-    header h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+        /* Sol Sütun (Gri Alan) */
+        .sidebar {
+            width: 30%;
+            background-color: #4a535e;
+            color: white;
+            padding: 30px 20px;
+        }
 
-    header p {
-      font-size: 18px;
-      opacity: 0.85;
-    }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid #636e7b;
+            object-fit: cover;
+        }
 
-    section {
-      max-width: 900px;
-      margin: auto;
-      background: #ffffff;
-      color: #333;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      margin-bottom: 40px;
-    }
+        /* FOTOĞRAFI YAKINLAŞTIRMA VE KAPIDAN KURTARMA BÖLÜMÜ */
+        .profile-container {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 4px solid #636e7b;
+            overflow: hidden; /* Dışarı taşan kapı kısımlarını gizler */
+            position: relative;
+            background-color: #333;
+        }
 
-    h2 {
-      border-left: 5px solid #2c5364;
-      padding-left: 10px;
-      margin-top: 0;
-    }
+        .profile-container img {
+            width: 140%; /* Resmi büyüterek kenardaki kapıyı dışarıda bırakıyoruz */
+            height: 140%;
+            object-fit: cover;
+            position: absolute;
+            top: -17%; /* Resmi yukarı kaydırarak yüzü ortalıyoruz */
+            left: -17%; /* Resmi sola kaydırarak hizalıyoruz */
+        }
 
-    ul {
-      padding-left: 20px;
-    }
+        .sidebar h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #636e7b;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
 
-    .skills span {
-      display: inline-block;
-      background: #2c5364;
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: 20px;
-      margin: 5px 5px 0 0;
-      font-size: 14px;
-    }
+        .sidebar-item {
+            font-size: 13px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      opacity: 0.7;
-    }
-  </style>
+        .sidebar-item b {
+            display: block;
+            color: #bdc3c7;
+        }
+
+        /* Sağ Sütun (Beyaz Alan) */
+        .main-content {
+            width: 70%;
+            padding: 40px;
+            color: #333;
+        }
+
+        .main-content h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #2c3e50;
+        }
+
+        .summary {
+            font-size: 14px;
+            margin-top: 15px;
+            color: #555;
+            line-height: 1.5;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 25px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 3px;
+        }
+
+        .experience-item {
+            margin-top: 15px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .item-sub {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        /* Yetenek Barları */
+        .skill-bar-container {
+            margin-bottom: 10px;
+        }
+        .skill-name { font-size: 13px; }
+        .bar-bg { background: #eee; height: 8px; width: 100%; border-radius: 4px; margin-top: 4px; }
+        .bar-fill { background: #4a535e; height: 100%; border-radius: 4px; }
+
+        /* Instagram Link Tasarımı */
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: transform 0.2s;
+        }
+        .instagram-link:hover {
+            transform: scale(1.05);
+        }
+
+        /* Telif Hakkı (Footer) Tasarımı */
+        .footer {
+            margin-top: 20px;
+            color: #bdc3c7;
+            font-size: 12px;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
 
-<header>
-  <h1 style="text-align: center;">Burak Kurt - 25430070008</h1>
-  <p>Yazılım Geliştirici Adayı</p>
-</header>
+    <div class="cv-card">
+        <div class="sidebar">
+            <div class="profile-container">
+                <img src="myfoto.jpg" alt="Burak Kurt">
+            </div>
+            
+            <h3>Kişisel Bilgiler</h3>
+            <div class="sidebar-item"><b>İsim</b>Burak Kurt</div>
+            <div class="sidebar-item"><b>Adres</b>Mersin, Türkiye</div>
+            <div class="sidebar-item"><b>Telefon</b>0544 606 09 08</div>
+            <div class="sidebar-item"><b>E-posta</b>burakkurt94@gmail.com</div>
 
-<section>
-  <h2>Hakkımda</h2>
-  <p>
-    Python ve C# başta olmak üzere yazılım geliştirme ve programlama alanında kendimi geliştirmekteyim.
-  </p>
-</section>
+            <h3>İlgi Alanları</h3>
+            <div class="sidebar-item">Yazılım, Oyun Geliştirme, Satranç</div>
 
-<section>
-  <h2>Eğitim</h2>
-  <ul>
-    <li>Mersin Erdemli Meslek Yüksekokulu / Bilişim Teknolojileri Ve Sistemleri</li>
-  </ul>
-</section>
+            <h3>Diller</h3>
+            <div class="sidebar-item">Türkçe (Anadil)</div>
+            <div class="sidebar-item">İngilizce (B2 Seviye)</div>
+        </div>
 
-<section>
-  <h2>Yetenekler</h2>
-  <div class="skills">
-    <span>Python</span>
-    <span>C#</span>
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>Lua</span>
-    <span>Temel JavaScript</span>
-  </div>
-</section>
+        <div class="main-content">
+            <h1>BURAK KURT</h1>
+            <p class="summary">
+                Mersin Üniversitesi Bilişim Sistemleri Teknolojileri öğrencisiyim. Python ve C# başta olmak üzere yazılım geliştirme ve programlama alanında kendimi geliştirmekteyim.
+            </p>
 
-<section>
-  <h2>İlgi Alanları</h2>
-  <ul>
-    <li>Oyun geliştirme</li>
-    <li>Programlama</li>
-  </ul>
-</section>
+            <div class="section-title">İş Deneyimi</div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <span style="color: #7f8c8d; font-weight: normal;">Henüz iş deneyimi bulunmamaktadır.</span>
+                </div>
+            </div>
 
-<footer>
-  © 2026 Burak Kurt
-</footer>
+            <div class="section-title">Eğitim</div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <span>Bilişim Sistemleri Teknolojileri</span>
+                    <span>2025 - 2026</span>
+                </div>
+                <div class="item-sub">Erdemli Meslek Yüksekokulu, Mersin</div>
+            </div>
+
+            <div class="section-title">Yetenekler</div>
+            <br>
+            <div class="skill-bar-container">
+                <div class="skill-name">HTML & CSS</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 50%;"></div></div>
+            </div>
+            <div class="skill-bar-container">
+                <div class="skill-name">C#</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 50%;"></div></div>
+            </div>
+            <div class="skill-bar-container">
+                <div class="skill-name">Python</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 60%;"></div></div>
+            </div>
+            <div class="skill-bar-container">
+                <div class="skill-name">Lua</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 40%;"></div></div>
+            </div>
+
+            <div class="section-title">Sosyal Medya</div>
+            <a href="https://instagram.com/burakk67r" target="_blank" class="instagram-link">
+                📸 @burakk67r
+            </a>
+
+            <div class="section-title">Sertifikalar</div>
+            <p style="font-size: 13px;">Ofis Programları Kullanımı</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Burak Kurt - Tüm Hakları Saklıdır.
+    </div>
 
 </body>
 </html>
